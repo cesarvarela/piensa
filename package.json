@@ -1,0 +1,38 @@
+{
+  "name": "think",
+  "version": "1.0.0",
+  "description": "CLI tool that pipes text into LLM agents from different providers",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "think": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node --trace-deprecation dist/index.js",
+    "dev": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "cli",
+    "ai",
+    "llm",
+    "openai",
+    "anthropic",
+    "gpt",
+    "claude"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@types/node": "^22.13.10",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "conf": "^13.1.0",
+    "openai": "^4.86.2",
+    "ora": "^8.2.0",
+    "typescript": "^5.8.2"
+  }
+}

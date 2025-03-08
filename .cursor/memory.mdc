@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Style Guide
+- Use braces on new lines for control structures (if, try/catch, switch)
