@@ -23,8 +23,12 @@
     "gpt",
     "claude"
   ],
-  "author": "",
+  "author": "Cesar Varela",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cesarvarela/think"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "@types/node": "^22.13.10",
@@ -34,5 +38,8 @@
     "openai": "^4.86.2",
     "ora": "^8.2.0",
     "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

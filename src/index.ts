@@ -29,7 +29,10 @@ const program = new Command();
 program
   .name('think')
   .description('Pipe text into LLM agents from different providers')
-  .version(packageJson.version)
+  .version(packageJson.version);
+
+// Main command
+program
   .argument('[prompt]', 'The prompt to send to the LLM')
   .option('-p, --provider <provider>', 'LLM provider to use (openai, anthropic)', 'openai')
   .option('-m, --model <model>', 'Model to use (e.g., gpt-4, claude-3-opus)')
@@ -70,6 +73,90 @@ program
       
       spinner.stop();
       console.log(result);
+    } catch(e) {
+      if(e instanceof Error) {
+        console.error(chalk.red(`Error: ${e.message}`));
+      } else {
+        console.error(chalk.red('An unknown error occurred'));
+      }
+      process.exit(1);
+    }
+  });
+
+// Set model for any provider
+program
+  .command('set-model')
+  .description('Set the default model for a specific provider')
+  .argument('<provider>', 'The provider to set the model for (e.g., openai, anthropic)')
+  .argument('<model>', 'The model to set as default')
+  .action(async (provider, model) => {
+    try {
+      const config = getConfig();
+      config.setDefaultModel(provider, model);
+      console.log(chalk.green(`Default model for ${provider} set to: ${model}`));
+    } catch(e) {
+      if(e instanceof Error) {
+        console.error(chalk.red(`Error: ${e.message}`));
+      } else {
+        console.error(chalk.red('An unknown error occurred'));
+      }
+      process.exit(1);
+    }
+  });
+
+// Get model for a specific provider
+program
+  .command('get-model')
+  .description('Get the current default model for a specific provider')
+  .argument('<provider>', 'The provider to get the model for (e.g., openai, anthropic)')
+  .action(async (provider) => {
+    try {
+      const config = getConfig();
+      const model = config.getDefaultModel(provider);
+      
+      if(model) {
+        console.log(chalk.green(`Default model for ${provider}: ${model}`));
+      } else {
+        console.log(chalk.yellow(`No default model set for ${provider}`));
+      }
+    } catch(e) {
+      if(e instanceof Error) {
+        console.error(chalk.red(`Error: ${e.message}`));
+      } else {
+        console.error(chalk.red('An unknown error occurred'));
+      }
+      process.exit(1);
+    }
+  });
+
+// View current configuration
+program
+  .command('config')
+  .description('View current configuration settings')
+  .action(async () => {
+    try {
+      const config = getConfig();
+      const defaultProvider = config.getDefaultProvider();
+      
+      console.log(chalk.blue('=== Think CLI Configuration ==='));
+      console.log(chalk.yellow('\nDefault Provider:'), defaultProvider);
+      
+      // Display OpenAI settings if configured
+      const openaiConfig = config.getProviderConfig('openai') as { apiKey?: string; defaultModel?: string } | undefined;
+      if(openaiConfig) {
+        console.log(chalk.yellow('\nOpenAI Configuration:'));
+        console.log('API Key:', openaiConfig.apiKey ? '********' + openaiConfig.apiKey.slice(-4) : 'Not set');
+        console.log('Default Model:', openaiConfig.defaultModel || 'Not set');
+      }
+      
+      // Display Anthropic settings if configured
+      const anthropicConfig = config.getProviderConfig('anthropic') as { apiKey?: string; defaultModel?: string } | undefined;
+      if(anthropicConfig) {
+        console.log(chalk.yellow('\nAnthropic Configuration:'));
+        console.log('API Key:', anthropicConfig.apiKey ? '********' + anthropicConfig.apiKey.slice(-4) : 'Not set');
+        console.log('Default Model:', anthropicConfig.defaultModel || 'Not set');
+      }
+      
     } catch(e) {
       if(e instanceof Error) {
         console.error(chalk.red(`Error: ${e.message}`));
