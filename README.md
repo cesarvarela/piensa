@@ -30,6 +30,12 @@ Summarize a file:
 cat myfile.txt | piensa "summarize"
 ```
 
+Stream responses as they're generated:
+
+```bash
+piensa "Tell me a story" --stream
+```
+
 ### Options
 
 Use a specific provider or model:
@@ -43,6 +49,14 @@ Set your API key (stored for reuse):
 
 ```bash
 piensa "Question?" --key your-api-key
+```
+
+Stream the response in real-time:
+
+```bash
+piensa "Question?" --stream
+# or use the short form
+piensa "Question?" -s
 ```
 
 ## Config

@@ -6,7 +6,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
 import ora from 'ora';
-import { processInput } from './utils/processor.js';
+import { processInput, streamInput } from './utils/processor.js';
 import { getConfig } from './utils/config.js';
 
 
@@ -37,6 +37,7 @@ program
   .option('-p, --provider <provider>', 'LLM provider to use (openai, anthropic)', 'openai')
   .option('-m, --model <model>', 'Model to use (e.g., gpt-4, claude-3-opus)')
   .option('-k, --key <key>', 'API key for the provider (will be stored for future use)')
+  .option('-s, --stream', 'Stream the response as it is generated')
   .option('-c, --config', 'Configure API keys and default settings')
   .action(async (prompt, options) => {
     try {
@@ -61,6 +62,33 @@ program
         process.exit(1);
       }
 
+      // If streaming is enabled, use streamInput
+      if(options.stream) {
+        try {
+          await streamInput({
+            prompt,
+            input,
+            provider: options.provider,
+            model: options.model,
+            apiKey: options.key,
+            stream: true
+          }, (chunk) => {
+            process.stdout.write(chunk);
+          });
+          // Add a newline at the end
+          process.stdout.write('\n');
+        } catch(e) {
+          if(e instanceof Error) {
+            console.error(chalk.red(`Error: ${e.message}`));
+          } else {
+            console.error(chalk.red('An unknown error occurred'));
+          }
+          process.exit(1);
+        }
+        return;
+      }
+      
+      // Otherwise use the regular processInput with spinner
       const spinner = ora('Processing...').start();
       
       const result = await processInput({

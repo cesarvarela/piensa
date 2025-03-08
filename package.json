@@ -1,6 +1,6 @@
 {
   "name": "piensa",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "CLI tool that pipes text into LLM agents from different providers",
   "type": "module",
   "main": "dist/index.js",

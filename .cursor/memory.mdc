@@ -5,3 +5,9 @@ alwaysApply: false
 ---
 # Style Guide
 - Use braces on new lines for control structures (if, try/catch, switch)
+
+# Streaming Feature
+- The CLI supports streaming responses with the `-s` or `--stream` flag
+- Both OpenAI and Anthropic providers implement streaming
+- Streaming bypasses the spinner and directly writes to stdout
+- Non-streaming mode uses a spinner to indicate processing
