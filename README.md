@@ -1,11 +1,11 @@
-# Think CLI 🧠
+# Piensa 🧠
 
 A simple CLI tool to interact easily with LLMs like OpenAI and Anthropic. Pipe in prompts, text, or files to quickly summarize, calculate, or get insights.
 
 ## Installation
 
 ```bash
-npm install -g think
+npm install -g piensa
 ```
 
 ## Usage
@@ -15,19 +15,19 @@ npm install -g think
 Ask a simple question:
 
 ```bash
-think "What's the capital of France?"
+piensa "What's the capital of France?"
 ```
 
 Pipe a calculation:
 
 ```bash
-echo "2 + 2" | think "calculate"
+echo "2 + 2" | piensa "calculate"
 ```
 
 Summarize a file:
 
 ```bash
-cat myfile.txt | think "summarize"
+cat myfile.txt | piensa "summarize"
 ```
 
 ### Options
@@ -35,14 +35,14 @@ cat myfile.txt | think "summarize"
 Use a specific provider or model:
 
 ```bash
-think "Question?" --provider openai
-think "Question?" --model gpt-4
+piensa "Question?" --provider openai
+piensa "Question?" --model gpt-4
 ```
 
 Set your API key (stored for reuse):
 
 ```bash
-think "Question?" --key your-api-key
+piensa "Question?" --key your-api-key
 ```
 
 ## Config
@@ -50,32 +50,41 @@ think "Question?" --key your-api-key
 Set up your preferences:
 
 ```bash
-think --config
+piensa --config
 ```
 
 Check your current config:
 
 ```bash
-think config
+piensa config
 ```
 
 Set a default model:
 
 ```bash
-think set-model openai gpt-4-turbo
+piensa set-model openai gpt-4-turbo
 ```
 
 Check your default model:
 
 ```bash
-think get-model openai
+piensa get-model openai
 ```
 
 ### Config Location
 
-- macOS: `~/Library/Preferences/think-nodejs/config.json`
-- Linux: `~/.config/think-nodejs/config.json`
-- Windows: `%APPDATA%\think-nodejs\Config\config.json`
+- macOS: `~/Library/Preferences/piensa-nodejs/config.json`
+- Linux: `~/.config/piensa-nodejs/config.json`
+- Windows: `%APPDATA%\piensa-nodejs\Config\config.json`
+
+### Security Note
+
+⚠️ **API Key Security**: API keys are stored in plain text in the configuration file. While these files are protected by your operating system's user permissions, please be aware of the following risks:
+
+- Do not share your configuration directory or backups containing these files
+- Be cautious when using on shared computers
+- Consider using environment variables for API keys in sensitive environments
+- If your machine is compromised, an attacker could potentially access these keys
 
 ## Supported Providers
 
@@ -87,8 +96,8 @@ think get-model openai
 Clone and run locally:
 
 ```bash
-git clone https://github.com/cesarvarela/think.git
-cd think
+git clone https://github.com/cesarvarela/piensa.git
+cd piensa
 npm install
 npm run build
 npm start "Your prompt here"

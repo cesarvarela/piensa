@@ -1,11 +1,11 @@
 {
-  "name": "think",
+  "name": "piensa",
   "version": "1.0.0",
   "description": "CLI tool that pipes text into LLM agents from different providers",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "think": "./dist/index.js"
+    "piensa": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -27,7 +27,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cesarvarela/think"
+    "url": "https://github.com/cesarvarela/piensa"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

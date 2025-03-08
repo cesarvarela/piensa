@@ -22,7 +22,7 @@ class Config {
 
   constructor() {
     this.config = new Conf<ConfigSchema>({
-      projectName: 'think',
+      projectName: 'piensa',
       schema: {
         providers: {
           type: 'object',

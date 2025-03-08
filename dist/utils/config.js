@@ -4,7 +4,7 @@ import chalk from 'chalk';
 class Config {
     constructor() {
         this.config = new Conf({
-            projectName: 'think',
+            projectName: 'piensa',
             schema: {
                 providers: {
                     type: 'object',
