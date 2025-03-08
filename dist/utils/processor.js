@@ -9,7 +9,7 @@ export async function processInput(options) {
     if (!apiKey) {
         apiKey = config.getApiKey(providerName);
         if (!apiKey) {
-            throw new Error(`No API key found for provider '${providerName}'. Please provide an API key with --key or run 'think --config' to set up.`);
+            throw new Error(`No API key found for provider '${providerName}'. Please provide an API key with --key or run 'piensa --config' to set up.`);
         }
     }
     else {

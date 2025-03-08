@@ -27,7 +27,7 @@ const packageJson = JSON.parse(
 const program = new Command();
 
 program
-  .name('think')
+  .name('piensa')
   .description('Pipe text into LLM agents from different providers')
   .version(packageJson.version);
 
@@ -61,7 +61,7 @@ program
         process.exit(1);
       }
 
-      const spinner = ora('Thinking...').start();
+      const spinner = ora('Processing...').start();
       
       const result = await processInput({
         prompt,
@@ -138,7 +138,7 @@ program
       const config = getConfig();
       const defaultProvider = config.getDefaultProvider();
       
-      console.log(chalk.blue('=== Think CLI Configuration ==='));
+      console.log(chalk.blue('=== Piensa CLI Configuration ==='));
       console.log(chalk.yellow('\nDefault Provider:'), defaultProvider);
       
       // Display OpenAI settings if configured

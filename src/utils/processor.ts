@@ -20,7 +20,7 @@ export async function processInput(options: ProcessInputOptions): Promise<string
   if(!apiKey) {
     apiKey = config.getApiKey(providerName);
     if(!apiKey) {
-      throw new Error(`No API key found for provider '${providerName}'. Please provide an API key with --key or run 'think --config' to set up.`);
+      throw new Error(`No API key found for provider '${providerName}'. Please provide an API key with --key or run 'piensa --config' to set up.`);
     }
   } else {
     // If API key is provided via command line, save it for future use

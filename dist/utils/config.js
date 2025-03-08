@@ -50,7 +50,7 @@ class Config {
                 });
             });
         };
-        console.log(chalk.blue('=== Think CLI Configuration ==='));
+        console.log(chalk.blue('=== Piensa CLI Configuration ==='));
         // Configure OpenAI
         console.log(chalk.yellow('\nOpenAI Configuration:'));
         const openaiKey = await question('OpenAI API Key (leave empty to skip): ');

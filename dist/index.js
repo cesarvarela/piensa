@@ -17,7 +17,7 @@ const __dirname = dirname(__filename);
 const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8'));
 const program = new Command();
 program
-    .name('think')
+    .name('piensa')
     .description('Pipe text into LLM agents from different providers')
     .version(packageJson.version);
 // Main command
@@ -47,7 +47,7 @@ program
             console.error(chalk.red('Error: No input provided. Provide a prompt or pipe content.'));
             process.exit(1);
         }
-        const spinner = ora('Thinking...').start();
+        const spinner = ora('Processing...').start();
         const result = await processInput({
             prompt,
             input,
@@ -124,7 +124,7 @@ program
     try {
         const config = getConfig();
         const defaultProvider = config.getDefaultProvider();
-        console.log(chalk.blue('=== Think CLI Configuration ==='));
+        console.log(chalk.blue('=== Piensa CLI Configuration ==='));
         console.log(chalk.yellow('\nDefault Provider:'), defaultProvider);
         // Display OpenAI settings if configured
         const openaiConfig = config.getProviderConfig('openai');
