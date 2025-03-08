@@ -10,8 +10,7 @@ export class OpenAIProvider {
                 model: model,
                 messages: [
                     { role: 'user', content: prompt }
-                ],
-                temperature: 0.7,
+                ]
             });
             return response.choices[0]?.message?.content || 'No response generated';
         }
@@ -33,8 +32,7 @@ export class OpenAIProvider {
                 messages: [
                     { role: 'user', content: prompt }
                 ],
-                temperature: 0.7,
-                stream: true,
+                stream: true
             });
             for await (const chunk of stream) {
                 const content = chunk.choices[0]?.delta?.content || '';
