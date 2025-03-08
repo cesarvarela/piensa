@@ -11,3 +11,7 @@ alwaysApply: false
 - Both OpenAI and Anthropic providers implement streaming
 - Streaming bypasses the spinner and directly writes to stdout
 - Non-streaming mode uses a spinner to indicate processing
+# OpenAI API Parameters
+- Do not set the temperature parameter in OpenAI API calls
+- The o1 model does not support the temperature parameter and will return error 400
+- For consistency, we do not set temperature for any model

@@ -14,8 +14,7 @@ export class OpenAIProvider implements Provider {
         model: model,
         messages: [
           { role: 'user', content: prompt }
-        ],
-        temperature: 0.7,
+        ]
       });
       
       return response.choices[0]?.message?.content || 'No response generated';
@@ -40,8 +39,7 @@ export class OpenAIProvider implements Provider {
         messages: [
           { role: 'user', content: prompt }
         ],
-        temperature: 0.7,
-        stream: true,
+        stream: true
       });
       
       for await (const chunk of stream) {
